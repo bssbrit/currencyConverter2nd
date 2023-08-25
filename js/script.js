@@ -1,24 +1,3 @@
-//passo 1 um input field muda o outro assim que tu clicar nele
-let input1 = document.getElementById("input1");
-let input2 = document.getElementById("input2");
-let rateOption1 = document.getElementById("select1");
-let rateOption2 = "";
-
-input1.addEventListener("click", function () {
-  input1.addEventListener("input", function () {
-    input2.value = input1.value;
-  });
-});
-
-input2.addEventListener("click", function () {
-  console.log("hi");
-  input2.addEventListener("input", function () {
-    console.log(input1);
-
-    input1.value = input2.value;
-  });
-});
-
 /*
 ok acho que usar uma função nos eventListener que vai pegar o valor do input selecionado 
 e passar numa função q vai simplesmente multiplicar pelo valor de conversão
@@ -33,22 +12,72 @@ const getCurrency = function (moeda) {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.data[moeda]);
       return data.data[moeda];
     });
 };
-getCurrency("USD");
 
 //logica de conversão
-/*
-  pega o valor 1
-  divide pela cotação da sua moeda
-  multiplica pela cotação da outra moeda
-  retorna 
-  valor dois sera igual ao resultado dessa função
-  */
 
 function convertCurrency(valor1, rate, rate2) {
   let resultado = valor1 / rate;
   return (resultado = resultado * rate2);
 }
+
+//passo 1 um input field muda o outro assim que tu clicar nele
+let input1 = document.getElementById("input1");
+let input2 = document.getElementById("input2");
+let rateOption1 = document.getElementById("select1");
+let rateOption2 = document.getElementById("select2");
+/* let rate1 = getCurrency(rateOption1.value);
+let rate2 = getCurrency(rateOption2.value); */
+let rate1;
+let rate2;
+fetch(
+  `https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_cu2VzPLWkpEvRvCCPZg58eXTWuwIrCNuEk5ZUHUu`
+)
+  .then((response) => response.json())
+  .then((data) => {
+    rate1 = data.data[rateOption1.value];
+  });
+
+fetch(
+  `https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_cu2VzPLWkpEvRvCCPZg58eXTWuwIrCNuEk5ZUHUu`
+)
+  .then((response) => response.json())
+  .then((data) => {
+    rate2 = data.data[rateOption2.value];
+    console.log(rate2);
+  });
+
+input1.addEventListener("input", function () {
+  console.log(rate1);
+  input2.value = convertCurrency(input1.value, rate1, rate2).toFixed(2);
+});
+
+input2.addEventListener("input", function () {
+  console.log(rate2);
+  input1.value = convertCurrency(input2.value, rate2, rate1).toFixed(2);
+});
+
+let selection = document.getElementById("select1");
+selection.addEventListener("click", function () {
+  fetch(
+    `https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_cu2VzPLWkpEvRvCCPZg58eXTWuwIrCNuEk5ZUHUu`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      rate1 = data.data[rateOption1.value];
+    });
+});
+
+let selection2 = document.getElementById("select2");
+selection2.addEventListener("click", function () {
+  fetch(
+    `https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_cu2VzPLWkpEvRvCCPZg58eXTWuwIrCNuEk5ZUHUu`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      rate2 = data.data[rateOption2.value];
+      console.log(rate2);
+    });
+});
