@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversor de Moeda</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p>Made by Bssb</p>
+      <h1>Conversor de moedas</h1>
+      <form class="content">
+        <div class="left">
+          <input
+            type="number"
+            class="value"
+            id="input1"
+            placeholder="input 1"
+          />
+
+          <div class="drop-list">
+            <div class="De">
+              <p>De</p>
+              <div class="caixaSelecao">
+                <img
+                  src="https://flagcdn.com/16x12/br.png"
+                  width="16"
+                  height="12"
+                  alt="Brazil"
+                />
+                <select id="select1">
+                  <option value="BRL">BRL</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="JPY">JPY</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mid">
+          <button type="button" class="swapCurrency">
+            <img src="images/swap-horizontal.png" />
+          </button>
+        </div>
+        <div class="right">
+          <input
+            type="number"
+            class="value"
+            id="input2"
+            placeholder="input 2"
+          />
+          <div class="To">
+            <p>Para</p>
+            <div class="caixaSelecao">
+              <img
+                src="https://flagcdn.com/16x12/br.png"
+                width="16"
+                height="12"
+                alt="Brazil"
+              />
+              <select id="select2">
+                <option value="BRL">BRL</option>
+                <option value="USD">USD</option>
+                <option value="BRL">EUR</option>
+                <option value="JPY">JPY</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
