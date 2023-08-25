@@ -81,3 +81,10 @@ selection2.addEventListener("click", function () {
       console.log(rate2);
     });
 });
+
+const swap = document.getElementById("swapBtn");
+swap.addEventListener("click", function () {
+  valor1 = input1.value;
+  input1.value = input2.value;
+  input2.value = valor1;
+});
